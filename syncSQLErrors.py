@@ -27,6 +27,7 @@ def createSchema():
     headers = {'X-Events-API-AccountName': _APPD_GLOBAL_ACCOUNT_NAME,'X-Events-API-Key':_APPD_ANALYTICS_API_TOKEN ,'Content-type':'application/vnd.appd.events+json;v=2'}
     newSchema = {
     "schema":{
+        "application" : "string",
         "stmt":"string",
         "errorDetails":"string",
         "callingMethod":"string",
@@ -54,6 +55,7 @@ def getSqlErrosFromSnapShot(snapshotPayload):
             if snaps['exitPointName'] == 'JDBC':
                 #get all data
                 item = {
+                    "application" : _APPD_APPLICATION_NAME,
                     "stmt": snaps['detailString'],
                     "errorDetails": snaps['errorDetails'],
                     "callingMethod": snaps['callingMethod'],

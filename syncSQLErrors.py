@@ -87,7 +87,10 @@ def getSnapshotsFromAppd():
     controllerUrl = _APPD_CONTROLER_URL+':'+_APPD_CONTROLLER_PORT
 
     r = requests.get(controllerUrl+'/controller/rest/applications/'+_APPD_APPLICATION_NAME+'/request-snapshots',headers=headers,params=params)
-    return json.loads(r.text)
+    if (r.status_code==200):
+        return json.loads(r.text)    
+    else:
+        return json.loads("[]")
 
 
 
